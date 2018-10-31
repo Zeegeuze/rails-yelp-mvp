@@ -1,2 +1,12 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<h1>Overview of restaurants</h1>
+
+<% @restaurants.each do |restaurant| %>
+  <h2><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h2>
+  <p><%= restaurant.address %></p>
+  <%= link_to "Delete", restaurant_path(restaurant),
+  method: :delete,
+  data: {confirm: "Are you sure you want to delete this restaurant? You won't be able to get it back!"} %>
+  <%= link_to "Edit", edit_admin_restaurant_path(restaurant) %>
+<% end %>
+
+<%= link_to "Create a new Restaurant", new_restaurant_path %>
